@@ -20,3 +20,10 @@ Etapas do Trabalho
 3) Cada membro da equipe deve coletar as coordenadas das prefeituras para o qual foi designado. 
 4) Escrever um script SQL para inserção na tabela TB_MUNICIPIOS. Será informado o esquema  
 da tabela posteriormente.
+
+Equipe 6 : Meso 4
+Ana Livia --> Cacique
+Leandro de Oliveira
+Marina Silva
+José Maia
+Jennifer Mariano
