@@ -4,7 +4,7 @@ Repositório proposto para a disciplina de Banco de Dados.
 Turma: P4 Informática 2024.1
 Aluno: José Maia Cavalcante Neto
 ---------------------------------
-#Atividade_06
+## Atividade_06
 Desenvolver um Backend Python que usa FASTAPI 
 
 Como um programador Python, crie uma aplicação backend que usa o framework FASTAPI seguindo os seguintes passos:
