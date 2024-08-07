@@ -26,3 +26,48 @@ c) listar_um_aluno ler um registro da tabela TB_ALUNO a partir do campo id;
 d) atualizar_aluno atualiza um registro da tabela TB_ALUNO a partir de um campo id e dos dados de uma entidade aluno; 
 
 e) excluir_aluno exclui um registro da tabela TB_ALUNO a partir de um campo id e dos dados de uma entidade aluno;
+
+## Como usar:
+Baixe:
+
+pip install fastapi
+
+pip install pydantic
+
+pip install uvicorn
+
+## Interagir:
+
+uvicorn main:app --host 0.0.0.0 --port 8000
+(Substitua main pelo nome do arquivo principal)
+
+## Criar Aluno:
+
+curl -X POST \
+  http://localhost:8000/alunos/ \
+  -H 'Content-Type: application/json' \
+  -d '{"aluno_nome": "João Silva", "endereco": "Rua dos Alunos, 123"}'
+
+## Listar todos os alunos:
+
+curl -X GET \
+  http://localhost:8000/alunos/
+
+## Listar um aluno:
+
+curl -X GET \
+  http://localhost:8000/alunos/1
+
+## Atualizar um aluno:
+
+curl -X PUT \
+  http://localhost:8000/alunos/1 \
+  -H 'Content-Type: application/json' \
+  -d '{"aluno_nome": "João Silva Updated", "endereco": "Rua dos Alunos, 123 Updated"}'
+
+  ## Deletar um aluno:
+
+curl -X DELETE \
+  http://localhost:8000/alunos/1
+
+
