@@ -22,6 +22,11 @@ docker login
 
 # docker-compose.yml
 
+```
+vi docker-compose.yml
+
+```
+
 Para abrir as portas
 
 ```
@@ -60,6 +65,14 @@ volumes:
 
 ```
 
+# Salvar e sair do arquivo 
+
+```
+
+:wq
+
+```
+
 # executar o arquivo criado anteriormente
 
 ```
@@ -69,6 +82,11 @@ docker-compose up -d
 ```
 
 # Crie o arquivo python para criar a tabela e inserir valores
+
+```
+vi docker-python.py
+
+```
 
 ```
 
@@ -131,6 +149,15 @@ mydb.close()
 
 
 ```
+
+# Salvar e sair do arquivo 
+
+```
+
+:wq
+
+```
+
 
 # importe o mysql connector
 
