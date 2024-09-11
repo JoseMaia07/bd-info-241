@@ -144,6 +144,6 @@ pip install mysql-connector-python
 
 ```
 
-python docker-python.yml
+python docker-python.py
 
 ```
