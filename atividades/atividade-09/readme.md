@@ -113,10 +113,10 @@ mycursor.execute("""CREATE TABLE IF NOT EXISTS TB_ALUNOS (
 );""")
 
 mycursor.executemany('INSERT INTO TB_ALUNOS (nome, nota_N1, nota_N2, faltas) VALUES (%s, %s, %s, %s);', [
-    ("Leandro", 9, 10, 10),
-    ("Ana Lívia", 0, 10, 0),
+    ("José Maria", 2, 4, 10),
+    ("Maria José", 5, 10, 0),
     ("José Maia", 10, 10, 1),
-    ("Kelwin", 9, 6, 30)
+    ("José Mayer", 9, 6, 30)
 ])
 
 mydb.commit()
