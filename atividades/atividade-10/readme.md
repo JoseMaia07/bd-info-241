@@ -87,7 +87,6 @@ vi main.py
 
 Coloque alterando os dados necessários:
 
-## Bugs, o código não está funcionando como deveria
 
 ```python
 
@@ -182,10 +181,13 @@ mydb.commit()
 
 
 cursor.execute("""
-    SELECT A.nome_aluno, M.nota_n1, M.nota_n2, M.faltas
+    SELECT A.id_aluno, A.nome_aluno, M.nota_n1, M.nota_n2, M.faltas
     FROM TB_MATRICULA M
     JOIN TB_ALUNO A ON M.id_aluno = A.id_aluno;
 """)
+
+
+
 matriculas = cursor.fetchall()
 
 
@@ -198,7 +200,7 @@ for matricula in matriculas:
         aprovado = True
     else:
         aprovado = False
-    cursor.execute('UPDATE TB_MATRICULA SET  aprovado = %s, media = %s WHERE id = %s;', (aprovado, media, id))
+    cursor.execute('UPDATE TB_MATRICULA SET aprovado = %s, media = %s WHERE id_matricula = %s;', (aprovado, media, id))
     print(f"Aluno: {nome_aluno}, Média: {media}, Aprovado: {aprovado}")
 
 mydb.commit()
@@ -206,6 +208,7 @@ mydb.commit()
 
 cursor.close()
 mydb.close()
+
 
 
 ```
