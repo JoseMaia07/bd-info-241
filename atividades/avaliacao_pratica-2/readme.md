@@ -216,38 +216,87 @@ for matricula in matriculas:
 
 mydb.commit()
 
-for matricula in matriculas:
-    id, nome_aluno, nota_n1, nota_n2, faltas = matricula
-    if aprovado == True:
-        print("Alunos Aprovados: ")
-        print(f"Aluno: {nome_aluno}, Nota N1: {nota_n1}, Nota N2: {nota_n2}, Média: {media}, Faltas: {faltas}, Aprovado: {aprovado}")
-        cursor.execute("""
-        SELECT 
-            COUNT(*) AS 'Quantidade de Alunos Aprovados'
-        FROM 
-            TB_MATRICULA
-        WHERE 
-            aprovado = TRUE;
-        """)
-        print("\nQuantidade de Alunos Aprovados:", cursor.fetchone()[0])
-    elif aprovado == False:
-        print("Alunos Reprovados: ")
-        print(f"Aluno: {nome_aluno}, Nota N1: {nota_n1}, Nota N2: {nota_n2}, Média: {media}, Faltas: {faltas}, Aprovado: {aprovado}")
-        cursor.execute("""
-        SELECT 
-            COUNT(*) AS 'Quantidade de Alunos Reprovados'
-        FROM 
-            TB_MATRICULA
-        WHERE 
-            aprovado = FALSE;
-        """)
-        print("Quantidade de Alunos Reprovados:", cursor.fetchone()[0])
-    else:
-        print("Não consta dados")
+print("\nAlunos Reprovados:")
+cursor.execute("""
+    SELECT 
+        A.nome_aluno AS 'Nome do Aluno',
+        D.nome_disciplina AS 'Nome da Disciplina',
+        P.nome_professor AS 'Nome do Professor',
+        M.nota_n1 AS 'N1',
+        M.nota_n2 AS 'N2',
+        M.media AS 'Média',
+        M.faltas AS 'Faltas',
+        CASE
+            WHEN M.faltas > 20 THEN 'Reprovado por Falta'
+            WHEN M.media < 6.0 THEN 'Reprovado por Média'
+        END AS 'Status da Reprovação'
+    FROM 
+        TB_MATRICULA M
+    JOIN 
+        TB_ALUNO A ON M.id_aluno = A.id_aluno
+    JOIN 
+        TB_DISCIPLINA D ON M.id_disciplina = D.id_disciplina
+    JOIN 
+        TB_PROFESSOR P ON M.id_professor = P.id_professor
+    WHERE 
+        M.aprovado = FALSE;
+""")
+
+for row in cursor.fetchall():
+    print(row)
+
+cursor.execute("""
+    SELECT 
+        COUNT(*) AS 'Quantidade de Alunos Reprovados'
+    FROM 
+        TB_MATRICULA
+    WHERE 
+        aprovado = FALSE;
+""")
+print("Quantidade de Alunos Reprovados:", cursor.fetchone()[0])
+
+print("\nAlunos Aprovados:")
+cursor.execute("""
+    SELECT 
+        A.nome_aluno AS 'Nome do Aluno',
+        D.nome_disciplina AS 'Nome da Disciplina',
+        P.nome_professor AS 'Nome do Professor',
+        M.nota_n1 AS 'N1',
+        M.nota_n2 AS 'N2',
+        M.media AS 'Média',
+        M.faltas AS 'Faltas',
+        'Aprovado por Média' AS 'Status da Aprovação'
+    FROM 
+        TB_MATRICULA M
+    JOIN 
+        TB_ALUNO A ON M.id_aluno = A.id_aluno
+    JOIN 
+        TB_DISCIPLINA D ON M.id_disciplina = D.id_disciplina
+    JOIN 
+        TB_PROFESSOR P ON M.id_professor = P.id_professor
+    WHERE 
+        M.aprovado = TRUE;
+""")
+
+for row in cursor.fetchall():
+    print(row)
+
+cursor.execute("""
+    SELECT 
+        COUNT(*) AS 'Quantidade de Alunos Aprovados'
+    FROM 
+        TB_MATRICULA
+    WHERE 
+        aprovado = TRUE;
+""")
+print("\nQuantidade de Alunos Aprovados:", cursor.fetchone()[0])
+
 
 
 cursor.close()
 mydb.close()
+
+
 
 
 ```
